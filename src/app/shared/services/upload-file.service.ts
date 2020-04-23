@@ -38,6 +38,8 @@ export class UploadFileService {
           console.log('File available at', downloadURL);
           fileUpload.url = downloadURL;
           fileUpload.name = fileUpload.file.name;
+          const user = JSON.parse(localStorage.getItem('user'));
+          fileUpload.email = user.email;
           this.saveFileData(fileUpload);
         });
       }

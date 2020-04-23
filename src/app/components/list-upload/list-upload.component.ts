@@ -13,22 +13,28 @@ import { Router } from '@angular/router';
 export class ListUploadComponent implements OnInit {
 
   fileUploads: any[];
- 
+
   constructor(private uploadService: UploadFileService,
     public authService: AuthService,
     public router: Router,
     public ngZone: NgZone) { }
- 
+
   public providerId: string = 'null';
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     // Use snapshotChanges().pipe(map()) to store the key
     this.uploadService.getFileUploads(6).snapshotChanges().pipe(
       map(changes =>
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       )
     ).subscribe(fileUploads => {
-      this.fileUploads = fileUploads;
+      this.fileUploads = [];
+      const user = JSON.parse(localStorage.getItem('user'));
+      for (let file of fileUploads) {
+        if (file.email === user.email) {
+          this.fileUploads.push(file);
+        }
+      }
     });
   }
 }
