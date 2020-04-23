@@ -10,16 +10,18 @@ import { VerifyEmailComponent } from '../../components/verify-email/verify-email
 import { AuthGuard } from "../../shared/guard/auth.guard";
 import { HomeComponent } from 'src/app/components/home/home.component';
 import { ListUploadComponent } from 'src/app/components/list-upload/list-upload.component';
+import { FormUploadComponent } from 'src/app/components/form-upload/form-upload.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/sign-in', pathMatch: 'full'},
-  { path: 'sign-in', component: SignInComponent},
-  { path: 'register-user', component: SignUpComponent},
+  { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
+  { path: 'sign-in', component: SignInComponent },
+  { path: 'register-user', component: SignUpComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent },
-  { path: 'home', component:HomeComponent , canActivate: [AuthGuard]},
-  { path: 'listupload', component: ListUploadComponent, canActivate: [AuthGuard]}
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'list', component: ListUploadComponent, canActivate: [AuthGuard] },
+  { path: 'upload', component: FormUploadComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

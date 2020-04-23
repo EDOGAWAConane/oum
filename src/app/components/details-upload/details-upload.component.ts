@@ -10,12 +10,12 @@ import { FileUpload } from 'src/app/models/UploadFile.model'
 export class DetailsUploadComponent implements OnInit {
 
   @Input() fileUpload: FileUpload;
- 
+
   constructor(private uploadService: UploadFileService) { }
- 
+
   ngOnInit() {
   }
- 
+
   deleteFileUpload(fileUpload) {
     this.uploadService.deleteFileUpload(fileUpload);
   }

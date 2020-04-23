@@ -1,14 +1,34 @@
-<div *ngIf="currentFileUpload" class="progress">
-    <div class="progress-bar progress-bar-info progress-bar-striped"
-      role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
-      aria-valuemin="0" aria-valuemax="100"
-      [ngStyle]="{width:progress.percentage+'%'}">
-      {{progress.percentage}}%</div>
+<app-header></app-header>
+
+<!-- Sidebar navigation -->
+<div class="container-fluid">
+  <div class="row">
+    <app-sidebar></app-sidebar>
+
+    <!-- Main content -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="inner-adjust">
+        <div class="pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Upload New File</h1>
+        </div>
+        <!-- Home page content -->
+        <div class="panel panel-primary">
+          <div class="panel-body">
+            <div *ngIf="currentFileUpload" class="progress">
+              <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
+                [ngStyle]="{width:progress.percentage+'%'}">
+                {{progress.percentage}}%</div>
+            </div>
+
+            <label class="btn btn-default"> <input type="file" (change)="selectFile($event)">
+            </label>
+
+            <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
   </div>
-   
-  <label class="btn btn-default"> <input type="file"
-    (change)="selectFile($event)">
-  </label>
-   
-  <button class="btn btn-success" [disabled]="!selectedFiles"
-    (click)="upload()">Upload</button>
+</div>
