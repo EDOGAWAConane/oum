@@ -1,7 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import * as firebase from 'firebase';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { FileUpload } from 'src/app/models/UploadFile.model';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
@@ -12,17 +11,17 @@ import { Router } from '@angular/router';
 })
 export class UploadFileService {
   private basePath = '/uploads';
- 
+
   constructor(private db: AngularFireDatabase,
     public authService: AuthService,
     public router: Router,
     public ngZone: NgZone
-    ) { }
- 
+  ) { }
+
   pushFileToStorage(fileUpload: FileUpload, progress: { percentage: number }) {
     const storageRef = firebase.storage().ref();
     const uploadTask = storageRef.child(`${this.basePath}/${fileUpload.file.name}`).put(fileUpload.file);
- 
+
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot) => {
         // in progress
@@ -44,16 +43,16 @@ export class UploadFileService {
       }
     );
   }
- 
+
   private saveFileData(fileUpload: FileUpload) {
     this.db.list(`${this.basePath}/`).push(fileUpload);
   }
- 
+
   getFileUploads(numberItems): AngularFireList<FileUpload> {
     return this.db.list(this.basePath, ref =>
       ref.limitToLast(numberItems));
   }
- 
+
   deleteFileUpload(fileUpload: FileUpload) {
     this.deleteFileDatabase(fileUpload.key)
       .then(() => {
@@ -61,11 +60,11 @@ export class UploadFileService {
       })
       .catch(error => console.log(error));
   }
- 
+
   private deleteFileDatabase(key: string) {
     return this.db.list(`${this.basePath}/`).remove(key);
   }
- 
+
   private deleteFileStorage(name: string) {
     const storageRef = firebase.storage().ref();
     storageRef.child(`${this.basePath}/${name}`).delete();

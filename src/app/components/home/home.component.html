@@ -1,22 +1,20 @@
-<nav class="col-md-2 d-md-block bg-light sidebar">
-    <div class="sidebar-sticky">
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/dashboard" >
-            <i class="fas fa-user"></i>User Profile
-          </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/listupload">
-              <i class="fas fa-sign-out-alt"></i>List
-            </a>
-          </li>
-        <!-- Calling SignOut() Api from AuthService -->
-        <li class="nav-item">
-          <a class="nav-link" (click)="authService.SignOut()">
-            <i class="fas fa-sign-out-alt"></i>Log out
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<app-header></app-header>
+
+<!-- Sidebar navigation -->
+<div class="container-fluid">
+  <div class="row">
+    <app-sidebar></app-sidebar>
+
+    <!-- Main content -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="inner-adjust">
+        <div class="pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Home</h1>
+        </div>
+        <!-- Home page content -->
+
+      </div>
+    </main>
+
+  </div>
+</div>

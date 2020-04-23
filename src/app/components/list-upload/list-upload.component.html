@@ -1,8 +1,26 @@
-<div class="panel panel-primary">
-    <div class="panel-heading">List of Files</div>
-    <div *ngFor="let file of fileUploads">
-      <div class="panel-body">
-        <app-details-upload [fileUpload]='file'></app-details-upload>
+<app-header></app-header>
+
+<!-- Sidebar navigation -->
+<div class="container-fluid">
+  <div class="row">
+    <app-sidebar></app-sidebar>
+
+    <!-- Main content -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="inner-adjust">
+        <div class="pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">List of Files</h1>
+        </div>
+        <!-- Home page content -->
+        <div class="panel panel-primary">
+          <div *ngFor="let file of fileUploads">
+            <div class="panel-body">
+              <app-details-upload [fileUpload]='file'></app-details-upload>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </main>
+
   </div>
+</div>

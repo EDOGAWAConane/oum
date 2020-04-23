@@ -19,16 +19,17 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 
 // Auth service
-import { AuthService } from "./shared/services/auth.service";
 import { HomeComponent } from './components/home/home.component';
 import { ListUploadComponent } from './components/list-upload/list-upload.component';
 import { DetailsUploadComponent } from './components/details-upload/details-upload.component';
 import { FormUploadComponent } from './components/form-upload/form-upload.component';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { UploadFileService } from './shared/services/upload-file.service';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HeaderComponent } from './components/header/header.component';
+
 
 
 @NgModule({
@@ -42,7 +43,9 @@ import { UploadFileService } from './shared/services/upload-file.service';
     HomeComponent,
     ListUploadComponent,
     DetailsUploadComponent,
-    FormUploadComponent
+    FormUploadComponent,
+    SidebarComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -50,10 +53,10 @@ import { UploadFileService } from './shared/services/upload-file.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    ReactiveFormsModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    ReactiveFormsModule
   ],
-  providers: [AuthService, UploadFileService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 
