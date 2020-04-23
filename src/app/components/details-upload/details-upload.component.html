@@ -1,2 +1,4 @@
-<a href="{{fileUpload.url}}">{{fileUpload.name}}</a>
-<button (click)='deleteFileUpload(fileUpload)' class="btn btn-danger btn-xs" style="float: right">Delete</button>
+<div class="d-flex">
+    <a href="{{fileUpload.url}}">{{fileUpload.name}}</a>
+    <button (click)='deleteFileUpload(fileUpload)' class="btn btn-danger btn-xs">Delete</button>
+</div>
