@@ -5,7 +5,6 @@ import { FileUpload } from 'src/app/models/UploadFile.model';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -36,10 +35,17 @@ export class UploadFileService {
         // success
         uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
           console.log('File available at', downloadURL);
+
           fileUpload.url = downloadURL;
           fileUpload.name = fileUpload.file.name;
+          fileUpload.size = fileUpload.file.size;
+
           const user = JSON.parse(localStorage.getItem('user'));
           fileUpload.email = user.email;
+          fileUpload.userId = user.uid; 
+
+          //fileUpload.size = event.target.
+
           this.saveFileData(fileUpload);
         });
       }
@@ -55,12 +61,17 @@ export class UploadFileService {
       ref.limitToLast(numberItems));
   }
 
+  getFilesList(): AngularFireList<FileUpload> {
+    return this.db.list(this.basePath);
+  }
+
   deleteFileUpload(fileUpload: FileUpload) {
     this.deleteFileDatabase(fileUpload.key)
       .then(() => {
         this.deleteFileStorage(fileUpload.name);
       })
       .catch(error => console.log(error));
+
   }
 
   private deleteFileDatabase(key: string) {

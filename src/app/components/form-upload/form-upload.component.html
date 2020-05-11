@@ -14,6 +14,11 @@
         <!-- Home page content -->
         <div class="panel panel-primary">
           <div class="panel-body">
+
+            <div class="text-center">
+              <img src="../../../assets/up.gif" alt="upload">
+            </div>
+
             <div *ngIf="currentFileUpload" class="progress">
               <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
                 attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
@@ -21,10 +26,14 @@
                 {{progress.percentage}}%</div>
             </div>
 
-            <label class="btn btn-default"> <input type="file" (change)="selectFile($event)">
-            </label>
+            <div class="text-center">
+              <label class="btn btn-default"> <input id="file" type="file" (change)="selectFile($event)"></label>
 
-            <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+              <h5 id = "size"></h5>
+  
+              <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+            </div>
+
           </div>
         </div>
       </div>
